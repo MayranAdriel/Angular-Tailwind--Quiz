@@ -9,7 +9,10 @@
 
   <div class="grid grid-cols-2 gap-10 mt-10">
     <div *ngFor="let currentIssue of dataQuestions.listQuestion[index].options">
-      <app-question question="{{ currentIssue.name }}" (click)="mechanism(currentIssue.alias)"></app-question>
+      <app-question question="{{ currentIssue.name }}" (click)="mechanism(currentIssue.alias)" *ngIf="!limitReached"></app-question>
+    </div>
+    <div *ngIf="limitReached">
+      <app-result></app-result>
     </div>
   </div>
 </div>
