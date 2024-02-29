@@ -10,6 +10,6 @@ import { Component, Input } from '@angular/core';
 export class TitleComponent {
 
   @Input()
-  quizQuestion: string = ''
+  title: string = ''
 
 }
