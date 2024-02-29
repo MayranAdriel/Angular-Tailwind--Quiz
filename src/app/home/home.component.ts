@@ -5,6 +5,7 @@ import { TitleComponent } from './title/title.component';
 import { QuestionComponent } from './question/question.component';
 import { MainQuestionComponent } from './main-question/main-question.component';
 import { ResultComponent } from './result/result.component';
+import {ButtonComponent} from './button/button.component'
 import data from '../../assets/data/quiz_questions.json';
 
 @Component({
@@ -17,6 +18,7 @@ import data from '../../assets/data/quiz_questions.json';
     MainQuestionComponent,
     CommonModule,
     ResultComponent,
+    ButtonComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
@@ -27,9 +29,15 @@ export class HomeComponent implements OnInit {
   dataQuestions = {
     title: data.title,
     listQuestion: data.questions,
+    results: {
+      resultA: data.results.A,
+      resultB: data.results.B,
+    },
   };
 
   limitReached: boolean = false;
+
+  responseResult: string = '';
 
   index: number = 0;
 
@@ -37,11 +45,31 @@ export class HomeComponent implements OnInit {
 
   listOfAnswers: any[] = [];
 
+  finalResult() {
+    let finalResultA = 0;
+    let finalResultB = 0;
+
+    this.listOfAnswers.forEach((element) => {
+      if (element === 'A') {
+        finalResultA += 1;
+      } else {
+        finalResultB += 1;
+      }
+    });
+
+    if (finalResultA > finalResultB) {
+      this.responseResult = this.dataQuestions.results.resultA;
+    } else {
+      this.responseResult = this.dataQuestions.results.resultB;
+    }
+  }
+
   mechanism(response: string) {
     this.listOfAnswers[this.index] = response;
 
     if (this.index === this.maxQuestions) {
       this.limitReached = true;
+      this.finalResult();
     } else {
       this.index += 1;
     }
