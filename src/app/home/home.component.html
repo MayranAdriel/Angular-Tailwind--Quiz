@@ -4,7 +4,7 @@
   </div>
 
   <div class="">
-    <app-main-question questionMain="{{dataQuestions.listQuestion[index].question}}"></app-main-question>
+    <app-main-question questionMain="{{dataQuestions.listQuestion[index].question}}" *ngIf="!limitReached"></app-main-question>
   </div>
 
   <div class="grid grid-cols-2 gap-10 mt-10 items-center">
@@ -14,6 +14,6 @@
   </div>
   <div *ngIf="limitReached" class="text-center">
     <app-result result="{{responseResult}}"></app-result>
-    <app-button></app-button>
+    <app-button (click)="refresh()"></app-button>
   </div>
 </div>

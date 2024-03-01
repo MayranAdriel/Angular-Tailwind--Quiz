@@ -75,6 +75,10 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  refresh(){
+    location.reload();
+  }
+
   ngOnInit(): void {
     console.log(this.maxQuestions);
   }
