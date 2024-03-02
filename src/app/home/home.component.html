@@ -3,17 +3,17 @@
     <app-title title="{{dataQuestions.title}}"></app-title>
   </div>
 
-  <div class="">
+  <div class=>
     <app-main-question questionMain="{{dataQuestions.listQuestion[index].question}}" *ngIf="!limitReached"></app-main-question>
   </div>
 
-  <div class="grid grid-cols-2 gap-10 mt-10 items-center">
+  <div class="grid grid-cols-2 gap-5 mt-10">
     <div *ngFor="let currentIssue of dataQuestions.listQuestion[index].options">
       <app-question question="{{ currentIssue.name }}" (click)="mechanism(currentIssue.alias)" *ngIf="!limitReached"></app-question>
     </div>
   </div>
   <div *ngIf="limitReached" class="text-center">
-    <app-result result="{{responseResult}}"></app-result>
+    <app-result result="{{responseResult}}" class="text-3xl m-4"></app-result>
     <app-button (click)="refresh()"></app-button>
   </div>
 </div>
