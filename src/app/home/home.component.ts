@@ -5,7 +5,7 @@ import { TitleComponent } from './title/title.component';
 import { QuestionComponent } from './question/question.component';
 import { MainQuestionComponent } from './main-question/main-question.component';
 import { ResultComponent } from './result/result.component';
-import {ButtonComponent} from './button/button.component'
+import { ButtonComponent } from './button/button.component';
 import data from '../../assets/data/quiz_questions.json';
 
 @Component({
@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
     results: {
       resultA: data.results.A,
       resultB: data.results.B,
+      resultC: data.results.C,
     },
   };
 
@@ -59,6 +60,8 @@ export class HomeComponent implements OnInit {
 
     if (finalResultA > finalResultB) {
       this.responseResult = this.dataQuestions.results.resultA;
+    } else if (finalResultA === finalResultB) {
+      this.responseResult = this.dataQuestions.results.resultC;
     } else {
       this.responseResult = this.dataQuestions.results.resultB;
     }
@@ -75,10 +78,9 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  refresh(){
+  refresh() {
     location.reload();
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }
